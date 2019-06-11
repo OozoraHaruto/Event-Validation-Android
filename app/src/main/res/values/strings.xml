@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Event Validator</string>
+    <!--メインページ-->
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="camera_ok">Please press the button\n↓↓↓</string>
+    <string name="camera_disabled">Please enable the camera for this application.</string>
+</resources>
