@@ -10,7 +10,7 @@ class DisplayMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_message)
 
-        val message = intent.getStringExtra(EXTRA_MESSAGE)
+        val message = intent.getStringExtra("extra")
 
         val textView = findViewById<TextView>(R.id.textView).apply{
             text = message
