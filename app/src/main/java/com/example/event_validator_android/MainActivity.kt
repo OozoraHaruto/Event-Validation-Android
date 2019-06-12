@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private var currImagePath                   :String?                    = null
     private var imageUri                        :Uri?                       = null
     private var qrData                          :QRData                     = QRData()
+    private var qrSecrets                       :QRSecrets                  = QRSecrets()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,11 +96,40 @@ class MainActivity : AppCompatActivity() {
         scanResults!!.text                                                  = "${code.displayValue}"
         try{
             qrData                                                          = Klaxon().parse<QRData>(code.displayValue)!!
-
+            qrSecrets                                                       = loadSecrets(qrData)
 
         }catch (e: Exception){
             Toast.makeText(this, "Not our QR", Toast.LENGTH_SHORT).show()
         }
+    }
+    fun loadSecrets(data: QRData): QRSecrets{
+        var prime                               :String
+        var generator                           :String
+        var privateKey                          :String
+        var startIndex                          :Int
+
+        when(data.l){
+            10 -> prime                                                     = BuildConfig.P_10.split(";")[data.p]
+            else -> prime                                                   = BuildConfig.P_10.split(";")[data.p]
+        }
+
+        startIndex                                                          = prime.indexOf("[")
+        generator                                                           = prime.substring((startIndex+1), (prime.length-1))
+        generator                                                           = generator.split(")")[data.g]
+        prime                                                               = prime.substring(0, startIndex)
+
+        startIndex                                                          = generator.indexOf("(")
+        privateKey                                                          = generator.substring((startIndex+1))
+        privateKey                                                          = privateKey.split(",")[data.k]
+        generator                                                           = generator.substring(0, startIndex)
+
+        Log.e("DEBUG-APP", prime)
+        Log.e("DEBUG-APP", generator)
+        Log.e("DEBUG-APP", privateKey)
+
+
+//        return QRSecrets(prime, generator, data.y, privateKey)
+        return QRSecrets()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
