@@ -29,12 +29,14 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.lang.Exception
+import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.jar.Manifest
 
+
+
 class MainActivity : AppCompatActivity() {
-    private val LOG_TAG                                                     = "Barcode Scanner API"
     private val PHOTO_REQUEST                                               = 10
     private val SAVED_INSTANCE_URI                                          = "uri"
     private val SAVED_INSTANCE_RESULT                                       = "result"
@@ -94,42 +96,16 @@ class MainActivity : AppCompatActivity() {
     fun processQRCode(barcodes: SparseArray<Barcode>){
         val code = barcodes.valueAt(0)
         scanResults!!.text                                                  = "${code.displayValue}"
-        try{
-            qrData                                                          = Klaxon().parse<QRData>(code.displayValue)!!
-            qrSecrets                                                       = loadSecrets(qrData)
-
-        }catch (e: Exception){
-            Toast.makeText(this, "Not our QR", Toast.LENGTH_SHORT).show()
-        }
+        qrData                                                              = textToQR(code.displayValue)
+        qrSecrets                                                           = loadSecrets(qrData)
+        showData()
     }
-    fun loadSecrets(data: QRData): QRSecrets{
-        var prime                               :String
-        var generator                           :String
-        var privateKey                          :String
-        var startIndex                          :Int
-
-        when(data.l){
-            10 -> prime                                                     = BuildConfig.P_10.split(";")[data.p]
-            else -> prime                                                   = BuildConfig.P_10.split(";")[data.p]
+    fun showData(){
+        val showQRData = Intent(this, CorrectQR::class.java).apply {
+            putExtra(INT_QRDATA, qrData);
+            putExtra(INT_QRSECRETS, qrSecrets);
         }
-
-        startIndex                                                          = prime.indexOf("[")
-        generator                                                           = prime.substring((startIndex+1), (prime.length-1))
-        generator                                                           = generator.split(")")[data.g]
-        prime                                                               = prime.substring(0, startIndex)
-
-        startIndex                                                          = generator.indexOf("(")
-        privateKey                                                          = generator.substring((startIndex+1))
-        privateKey                                                          = privateKey.split(",")[data.k]
-        generator                                                           = generator.substring(0, startIndex)
-
-        Log.e("DEBUG-APP", prime)
-        Log.e("DEBUG-APP", generator)
-        Log.e("DEBUG-APP", privateKey)
-
-
-//        return QRSecrets(prime, generator, data.y, privateKey)
-        return QRSecrets()
+        startActivity(showQRData)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -152,6 +128,8 @@ class MainActivity : AppCompatActivity() {
                     val barcodes                                            = detector!!.detect(frame)
                     if(barcodes.size() == 0)
                         scanResults!!.text                                  = "Scan Failed"
+                    else if(barcodes.size() > 1)
+                        scanResults!!.text                                  = "Ensure there is only 1 QR at a time"
                     else
                         processQRCode(barcodes)
                 }else{
@@ -159,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }catch (e: Exception){
                 Toast.makeText(this, "Failed to load Image", Toast.LENGTH_SHORT).show()
-                Log.e(LOG_TAG, e.toString())
+                Log.e(LOG_KEY, e.toString())
             }
         }
     }
