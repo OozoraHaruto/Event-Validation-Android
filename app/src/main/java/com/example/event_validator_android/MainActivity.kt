@@ -15,27 +15,19 @@ import android.provider.MediaStore
 import android.util.Log
 import android.util.SparseArray
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.beust.klaxon.Klaxon
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.lang.Exception
-import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.jar.Manifest
-
-
 
 class MainActivity : AppCompatActivity() {
     private val PHOTO_REQUEST                                               = 10
@@ -96,17 +88,30 @@ class MainActivity : AppCompatActivity() {
     }
     fun processQRCode(barcodes: SparseArray<Barcode>){
         val code = barcodes.valueAt(0)
-        scanResults!!.text                                                  = "${code.displayValue}"
+        scanResults!!.text                                                  = resources.getText(R.string.startup_label)
+
         qrData                                                              = textToQR(code.displayValue)
-        qrSecrets                                                           = loadSecrets(qrData)
-        showData()
+        if(qrData.e != ""){
+            qrSecrets                                                       = loadSecrets(qrData)
+            showOurQRData()
+        }else{
+            showOtherQRData(code)
+        }
     }
-    fun showData(){
-        val showQRData = Intent(this, CorrectQR::class.java).apply {
+    fun showOurQRData(){
+        Intent(this, CorrectQR::class.java).apply {
             putExtra(INT_QRDATA, qrData);
             putExtra(INT_QRSECRETS, qrSecrets);
+        }.also {
+            startActivity(it)
         }
-        startActivity(showQRData)
+    }
+    fun showOtherQRData(code: Barcode){
+        Intent(this, WrongQR::class.java).apply {
+            putExtra(INT_BARCODE, code)
+        }.also {
+            startActivity(it)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

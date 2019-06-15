@@ -16,6 +16,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".WrongQR">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CorrectQR" android:parentActivityName=".MainActivity"></activity>
+        <activity
+                android:name=".CorrectQR"
+                android:parentActivityName=".MainActivity"/>
 
         <provider
                 android:name="androidx.core.content.FileProvider"

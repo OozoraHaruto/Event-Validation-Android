@@ -4,11 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,7 +19,7 @@ class CorrectQR : AppCompatActivity() {
         val qrData                                                          = intent.getSerializableExtra(INT_QRDATA) as QRData
         var qrSecrets                                                       = intent.getSerializableExtra(INT_QRSECRETS) as QRSecrets
         val shortSDF                                                        = SimpleDateFormat(SDF_INITIAL_FORMAT);
-        var fullSDF                                                         = SimpleDateFormat();
+        var fullSDF                             :SimpleDateFormat
         var eventToday                                                      = false
         var listData                            :MutableList<Item>          = listOf<Item>().toMutableList()
 
@@ -77,15 +74,16 @@ class CorrectQR : AppCompatActivity() {
         findViewById<ListView>(R.id.lstEventDetails).apply {
             adapter                                                         = listAdapter
             isLongClickable                                                 = true
-            setOnItemClickListener { parent, view, position, id ->
+            setOnItemClickListener { _, _, position, _ ->
                 val clickedItem                 :Item                       = listData[position]
                 val websiteRegex                                            = RGX_WEBSITE.toRegex(RegexOption.IGNORE_CASE)
 
                 websiteRegex.matches(clickedItem.title).also { matches ->
                     if (matches){
                         Intent(android.content.Intent.ACTION_VIEW).apply {
-                            data                                                = Uri.parse(clickedItem.title)
-                            startActivity(this)
+                            data                                            = Uri.parse(clickedItem.title)
+                        }.also {
+                            startActivity(it)
                         }
                     }
                 }

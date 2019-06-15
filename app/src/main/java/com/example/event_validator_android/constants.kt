@@ -8,6 +8,9 @@ val RGX_WEBSITE                                                         = "^(htt
 val INT_QRDATA                                                          = "com.example.event_validator.QRDATA"
 val INT_QRSECRETS                                                       = "com.example.event_validator.QRSECRETS"
 
+// -- Wrong QR
+val INT_BARCODE                                                         = "com.example.event_validator.BARCODE"
+
 
 // For UI
 // -- Type of Cells

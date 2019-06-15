@@ -1,15 +1,10 @@
 package com.example.event_validator_android
 
-import android.util.Base64
 import android.util.Log
-import android.util.SparseArray
-import android.widget.Toast
 import com.beust.klaxon.Klaxon
-import com.google.android.gms.vision.barcode.Barcode
 import java.lang.Exception
 import java.math.BigInteger
 import java.net.URLDecoder
-import java.security.PublicKey
 
 fun textToQR(data: String): QRData{
     var qrData                              :QRData                     = QRData()

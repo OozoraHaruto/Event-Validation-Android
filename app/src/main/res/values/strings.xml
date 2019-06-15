@@ -19,4 +19,21 @@
     <string name="website">Website</string>
     <string name="from">From</string>
     <string name="to">To</string>
+
+    <!--他のQRコード-->
+    <string name="opening">This app is not meant to scan normal QR Codes.</string>
+    <string name="supported">Just click the link&#8230;bye~</string>
+    <string name="not_suported">Sorry the textbox won\'t be able to help much for this data</string>
+    <string name="partial_support">This is all I can help. Click the link for what it is worth</string>
+
+    <string name="snide_comment_website">Wow&#8230;Porn?</string>
+    <string name="snide_comment_vcard">Whose is this? Girlfriend?</string>
+    <string name="snide_comment_vevent">Mr. Popular~</string>
+    <string name="snide_comment_mecard">Whose is this? Boyfriend?</string>
+    <string name="snide_comment_phone">Whose number is this? Girl you like?</string>
+    <string name="snide_comment_sms">Who you messaging? Interesting&#8230;</string>
+    <string name="snide_comment_email">E-mail? Want to write a letter instead?</string>
+    <string name="snide_comment_wifi">WiFi? Really? iPhone don\'t support this function dude</string>
+    <string name="snide_comment_bitcoin">Woah! You must be rich!</string>
+    <string name="snide_comment_dunno">You win. I have no idea what this is</string>
 </resources>

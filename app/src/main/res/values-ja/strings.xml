@@ -20,4 +20,21 @@
     <string name="website">ウェブサイト</string>
     <string name="from">から</string>
     <string name="to">まで</string>
+
+    <!--他のQRコード-->
+    <string name="opening">このアプリは通常のQRコードをスキャンするためのものではありません。</string>
+    <string name="supported">リンクをクリックするだけです。さよなら〜</string>
+    <string name="not_suported">申し訳ありませんが、テキストボックスはこのデータに大いに役立つことができません</string>
+    <string name="partial_support">これが私が手助けできるすべてです。 それが価値があるもののためにリンクをクリックしてください</string>
+
+    <string name="snide_comment_website">うわー&#8230;ポルノ？</string>
+    <string name="snide_comment_vcard">これは誰のです？ 彼女？</string>
+    <string name="snide_comment_vevent">ミスターポピュラー〜</string>
+    <string name="snide_comment_mecard">これは誰のです？ 彼氏？</string>
+    <string name="snide_comment_phone">これは誰の数ですか？ あなたは好きな女の子？</string>
+    <string name="snide_comment_sms">あなたは誰にメッセージを送りますか？ 面白い&#8230;</string>
+    <string name="snide_comment_email">メール？ 代わりに手紙を書きたいですか？</string>
+    <string name="snide_comment_wifi">Wi-Fi？ 本当に？ iPhoneはこの機能をサポートしていません</string>
+    <string name="snide_comment_bitcoin">うあああ！ あなたは金持ちでなければなりません！</string>
+    <string name="snide_comment_dunno">あなたは勝ちます。 これが何であるかわかりません</string>
 </resources>

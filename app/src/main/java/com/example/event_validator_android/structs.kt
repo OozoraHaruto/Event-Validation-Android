@@ -1,14 +1,12 @@
 package com.example.event_validator_android
 
 import android.app.Activity
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import java.io.Serializable
 import java.math.BigInteger
-
 
 data class QRData constructor(
     var e                       :String                 = "",                       // eventName
