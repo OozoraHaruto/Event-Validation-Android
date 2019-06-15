@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:background="#D8D8D8">
+              android:layout_height="match_parent" android:background="#00FFFFFF">
 
     <TextView
             android:text="Section"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/txtSectionTitle"
-            android:layout_gravity="center_horizontal" android:padding="10dp" android:textStyle="bold"/>
+            android:layout_height="wrap_content" android:id="@+id/lvSectionTxtSectionTitle"
+            android:textStyle="bold" android:textAllCaps="true" android:paddingLeft="30dp" android:paddingTop="20dp"
+            android:paddingRight="10dp" android:paddingBottom="10dp"/>
 </LinearLayout>

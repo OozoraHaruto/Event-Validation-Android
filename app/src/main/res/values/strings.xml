@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name">Event Validator</string>
+
     <!--メインページ-->
     <string name="scan_qr_code">Scan QR Code</string>
-    <string name="camera_ok">Please press the button\n↓↓↓</string>
-    <string name="camera_disabled">Please enable the camera for this application.</string>
+    <string name="startup_label">Please press the button\n↓↓↓</string>
+    <string name="detector_fail">Could not setup detector.</string>
+    <string name="permission_denied">Permission Denied!</string>
+    <string name="scan_failed">Scan failed! Please try again.</string>
+    <string name="more_than_one_qr">Ensure that there is only 1 QR in the picture.</string>
+    <string name="load_img_failed">Failed to load Image</string>
+
+    <!--俺たちのQRコード-->
+    <string name="event_details">Event Details</string>
+    <string name="date_duration">Duration</string>
+    <string name="date_list">List of Dates</string>
+    <string name="event_happening_now">Event is ongoing</string>
+    <string name="event_not_happening_now">Event is not ongoing</string>
+    <string name="website">Website</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>

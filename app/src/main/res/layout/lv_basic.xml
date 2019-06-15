@@ -7,5 +7,7 @@
     <TextView
             android:text="Item"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/txtItemTitle" android:padding="10dp"/>
+            android:layout_height="wrap_content" android:id="@+id/lvBasicTxtItemTitle"
+            android:clickable="false" android:paddingLeft="30dp" android:paddingTop="10dp" android:paddingRight="10dp"
+            android:paddingBottom="10dp"/>
 </LinearLayout>

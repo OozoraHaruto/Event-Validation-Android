@@ -19,6 +19,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.beust.klaxon.Klaxon
 import com.google.android.gms.vision.Frame
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         detector = BarcodeDetector.Builder(applicationContext).setBarcodeFormats(Barcode.ALL_FORMATS).build()
         if (!detector!!.isOperational){
-            scanResults!!.text                                              = "Could not set up detector!"
+            scanResults!!.text                                              = resources.getText(R.string.detector_fail)
             return
         }
     }
@@ -114,7 +115,8 @@ class MainActivity : AppCompatActivity() {
             REQUEST_PERMISSIONS -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 showQRCodeScanner()
             }else{
-                Toast.makeText(this@MainActivity, "Permission Denied!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, resources.getText(R.string.permission_denied), Toast.LENGTH_SHORT).show()
+                scanResults!!.text                                          = resources.getText(R.string.permission_denied)
             }
         }
     }
@@ -127,16 +129,17 @@ class MainActivity : AppCompatActivity() {
                     val frame                                               = Frame.Builder().setBitmap(bitmap).build()
                     val barcodes                                            = detector!!.detect(frame)
                     if(barcodes.size() == 0)
-                        scanResults!!.text                                  = "Scan Failed"
+                        scanResults!!.text                                  = resources.getText(R.string.scan_failed)
                     else if(barcodes.size() > 1)
-                        scanResults!!.text                                  = "Ensure there is only 1 QR at a time"
+                        scanResults!!.text                                  = resources.getText(R.string.more_than_one_qr)
                     else
                         processQRCode(barcodes)
                 }else{
-                    scanResults?.text                                       = "Could not setup the Barcode detector!"
+                    scanResults?.text                                       = resources.getText(R.string.detector_fail)
                 }
             }catch (e: Exception){
-                Toast.makeText(this, "Failed to load Image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getText(R.string.load_img_failed), Toast.LENGTH_SHORT).show()
+                scanResults!!.text                                          = resources.getText(R.string.load_img_failed)
                 Log.e(LOG_KEY, e.toString())
             }
         }

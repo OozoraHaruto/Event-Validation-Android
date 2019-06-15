@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">イベントバリデータ</string>
+
+    <!--メインページ-->
+    <string name="scan_qr_code">QRコードをスキャン</string>
+    <string name="startup_label">このボタンを押してください\n↓↓↓</string>
+    <string name="detector_fail">検出器を設定できませんでした。</string>
+    <string name="permission_denied">アクセス拒否！</string>
+    <string name="scan_failed">スキャンに失敗しました。 もう一度やり直してください。</string>
+    <string name="more_than_one_qr">写真にQRが1つだけあることを確認してください。</string>
+    <string name="load_img_failed">画像を読み込めませんでした</string>
+
+    <!--俺たちのQRコード-->
+    <string name="event_details">イベントの詳細</string>
+    <string name="date_duration">期間</string>
+    <string name="date_list">日付リスト</string>
+    <string name="event_happening_now">イベントは進行中です</string>
+    <string name="event_not_happening_now">イベントは進行中ではありません</string>
+    <string name="website">ウェブサイト</string>
+    <string name="from">から</string>
+    <string name="to">まで</string>
+</resources>

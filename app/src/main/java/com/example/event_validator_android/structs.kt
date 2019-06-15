@@ -1,40 +1,36 @@
 package com.example.event_validator_android
 
 import android.app.Activity
-import android.graphics.Typeface
-import android.icu.text.CaseMap
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.TextView
 import java.io.Serializable
 import java.math.BigInteger
-import java.text.FieldPosition
 
 
 data class QRData constructor(
-    var e                       :String                 = "",                        // eventName
-    var d                       :String                 = "",                        // date
-    var w                       :String                 = "",                        // website
-    var v                       :Double                 = 0.0,
-    var l                       :Int                    = 0,
-    var g                       :Int                    = 0,
-    var p                       :Int                    = 0,
-    var y                       :String                 = "",
-    var k                       :Int                    = 0,
-    var h                       :String                 = ""
+    var e                       :String                 = "",                       // eventName
+    var d                       :String                 = "",                       // date
+    var w                       :String                 = "",                       // website
+    var v                       :Double                 = 0.0,                      // QR version
+    var l                       :Int                    = 0,                        // Prime number length
+    var g                       :Int                    = 0,                        // Generator Index
+    var p                       :Int                    = 0,                        // Prime Number Index
+    var y                       :String                 = "",                       // Public Key
+    var k                       :Int                    = 0,                        // Private Key
+    var h                       :String                 = ""                        // Hash of unencrypted data
 ):Serializable {
 
 }
 
 data class QRSecrets constructor(
-    var p                       :BigInteger             = BigInteger.ZERO,
-    var g                       :BigInteger             = BigInteger.ZERO,
-    var y                       :BigInteger             = BigInteger.ZERO,
-    var k                       :BigInteger             = BigInteger.ZERO,
-    var s                       :BigInteger             = BigInteger.ZERO
+    var p                       :BigInteger             = BigInteger.ZERO,          // Prime
+    var g                       :BigInteger             = BigInteger.ZERO,          // Generator
+    var y                       :BigInteger             = BigInteger.ZERO,          // Public key
+    var k                       :BigInteger             = BigInteger.ZERO,          // Private Key
+    var s                       :BigInteger             = BigInteger.ZERO           // Shared Key
 ):Serializable {
     init{
         if(k != BigInteger.ZERO && y != BigInteger.ZERO && p != BigInteger.ZERO){
@@ -45,20 +41,23 @@ data class QRSecrets constructor(
 
 // For UI
 interface Item{
-    val title: String
-    val isSection: Boolean
+    val title                   :String
+    val itemType                :cellType
 }
 
-data class SectionItem(var data: String): Item{
-    override val title          :String                 = data
-    override val isSection: Boolean
-        get() = true
+data class SectionItem(override var title: String): Item{
+    override val itemType       :cellType
+        get()                                           = cellType.SECTION
 }
 
-data class EntryItem(var data: String): Item{
-    override val title          :String                 = data
-    override val isSection: Boolean
-        get() = false
+data class BasicItem(override var title: String): Item{
+    override val itemType       :cellType
+        get()                                           = cellType.BASIC
+}
+
+data class LeftDetailItem(override var title: String, var detail: String): Item{
+    override val itemType       :cellType
+        get()                                           = cellType.LEFTDETAIL
 }
 
 class QRViewAdapter(private val context: Activity, private val items: MutableList<Item>): BaseAdapter() {
@@ -79,15 +78,28 @@ class QRViewAdapter(private val context: Activity, private val items: MutableLis
         val inflater = context.layoutInflater
         var rowView             :View
 
-        if(items[position].isSection){
-            rowView                                     = inflater.inflate(R.layout.lv_section, null, true)
-            rowView.findViewById<TextView>(R.id.txtSectionTitle).apply {
-                text                                    = items[position].title
+        when (items[position].itemType){
+            cellType.SECTION ->{
+                rowView                             = inflater.inflate(R.layout.lv_section, null, true)
+                rowView.findViewById<TextView>(R.id.lvSectionTxtSectionTitle).apply {
+                    text                            = items[position].title
+                }
             }
-        }else{
-            rowView                                     = inflater.inflate(R.layout.lv_item, null, true)
-            rowView.findViewById<TextView>(R.id.txtItemTitle).apply {
-                text                                    = items[position].title
+            cellType.BASIC ->{
+                rowView                             = inflater.inflate(R.layout.lv_basic, null, true)
+                rowView.findViewById<TextView>(R.id.lvBasicTxtItemTitle).apply {
+                    text                            = items[position].title
+                }
+            }
+            cellType.LEFTDETAIL ->{
+                val item    :LeftDetailItem         = items[position] as LeftDetailItem
+                rowView                             = inflater.inflate(R.layout.lv_left_detail, null, true)
+                rowView.findViewById<TextView>(R.id.lvLeftDetailTxtDetail).apply {
+                    text                            = item.detail
+                }
+                rowView.findViewById<TextView>(R.id.lvLeftDetailTxtTitle).apply {
+                    text                            = item.title
+                }
             }
         }
 
