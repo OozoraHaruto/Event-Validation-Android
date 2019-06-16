@@ -35,5 +35,22 @@
     <string name="snide_comment_email">E-mail? Want to write a letter instead?</string>
     <string name="snide_comment_wifi">WiFi? Really? iPhone don\'t support this function dude</string>
     <string name="snide_comment_bitcoin">Woah! You must be rich!</string>
+    <string name="snide_comment_geo">Where are you going. I also want to go.</string>
+    <string name="snide_comment_text">What is so secretive that you need to embed into a QR code?</string>
     <string name="snide_comment_dunno">You win. I have no idea what this is</string>
+
+    <string name="act_website">View website</string>
+    <string name="act_phone">Call this number</string>
+    <string name="act_sms">Send this message</string>
+    <string name="act_geo">Open using map</string>
+    <string name="act_email">Send this email</string>
+    <string name="act_event">Add to calendar</string>
+    <string name="act_google_search">Search on Google</string>
+    <string name="act_google_map_search">Search on Google Maps</string>
+
+    <string name="phone_fax">Fax</string>
+    <string name="phone_home">Home</string>
+    <string name="phone_mobile">Mobile</string>
+    <string name="phone_work">Work</string>
+    <string name="phone_dunno">Don\'t Know</string>
 </resources>

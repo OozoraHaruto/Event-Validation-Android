@@ -27,8 +27,8 @@ class CorrectQR : AppCompatActivity() {
             title                                                           = resources.getText(R.string.event_details)
         }
         when (language){
-            "ja", "zh" -> fullSDF                                           = SimpleDateFormat(SDF_PRINTING_FORMAT_JA);
-            else -> fullSDF                                                 = SimpleDateFormat(SDF_PRINTING_FORMAT_DEFAULT);
+            "ja", "zh" -> fullSDF                                           = SimpleDateFormat(SDF_PRINTING_FORMAT_JA)
+            else -> fullSDF                                                 = SimpleDateFormat(SDF_PRINTING_FORMAT_DEFAULT)
         }
 
         findViewById<TextView>(R.id.txtEventName).apply {

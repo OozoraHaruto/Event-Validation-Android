@@ -36,5 +36,23 @@
     <string name="snide_comment_email">メール？ 代わりに手紙を書きたいですか？</string>
     <string name="snide_comment_wifi">Wi-Fi？ 本当に？ iPhoneはこの機能をサポートしていません</string>
     <string name="snide_comment_bitcoin">うあああ！ あなたは金持ちでなければなりません！</string>
+    <string name="snide_comment_geo">どこに行くのですか。僕も行きたい。</string>
+    <string name="snide_comment_text">あなたがQRコードに埋め込む必要があるほど秘密なのは何ですか？</string>
     <string name="snide_comment_dunno">あなたは勝ちます。 これが何であるかわかりません</string>
+
+
+    <string name="act_website">ウェブサイトを見る</string>
+    <string name="act_phone">この番号に電話してください</string>
+    <string name="act_sms">このメッセージを送ってください</string>
+    <string name="act_geo">マップを使用して開いてください</string>
+    <string name="act_email">このメールを送ってください</string>
+    <string name="act_event">カレンダーに追加</string>
+    <string name="act_google_search">グーグルで検索</string>
+    <string name="act_google_map_search">グーグルマップで検索</string>
+
+    <string name="phone_fax">ファックス</string>
+    <string name="phone_home">家</string>
+    <string name="phone_mobile">携帯電話</string>
+    <string name="phone_work">勤務先</string>
+    <string name="phone_dunno">わかりません</string>
 </resources>

@@ -5,6 +5,7 @@ import com.beust.klaxon.Klaxon
 import java.lang.Exception
 import java.math.BigInteger
 import java.net.URLDecoder
+import java.net.URLEncoder
 
 fun textToQR(data: String): QRData{
     var qrData                              :QRData                     = QRData()
@@ -25,6 +26,14 @@ fun base64ToNumber(base64: String):String{
     }
 
     return result
+}
+
+fun createGoogleSearchLink(query: String): String{
+    return "${GOOGLE_SEARCH}${URLEncoder.encode(query, "UTF-8")}"
+}
+
+fun createGoogleMapsLink(query: String): String{
+    return "${GOOGLE_MAPS}${URLEncoder.encode(query, "UTF-8")}"
 }
 
 // For Decryption

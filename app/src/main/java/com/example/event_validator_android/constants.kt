@@ -2,6 +2,8 @@ package com.example.event_validator_android
 
 val LOG_KEY                                                             = "event_validator.LOG"
 val RGX_WEBSITE                                                         = "^(http://www.|https://www.|http://|https://)?[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$"
+val GOOGLE_SEARCH                                                       = "https://www.google.com/search?q="
+val GOOGLE_MAPS                                                         = "https://maps.google.com/local?q="
 
 // For Intents
 // -- Correct QR

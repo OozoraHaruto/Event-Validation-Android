@@ -19,9 +19,7 @@ data class QRData constructor(
     var y                       :String                 = "",                       // Public Key
     var k                       :Int                    = 0,                        // Private Key
     var h                       :String                 = ""                        // Hash of unencrypted data
-):Serializable {
-
-}
+):Serializable
 
 data class QRSecrets constructor(
     var p                       :BigInteger             = BigInteger.ZERO,          // Prime
@@ -36,6 +34,12 @@ data class QRSecrets constructor(
         }
     }
 }
+
+data class IntentData(
+    var name                    :String                 = "",
+    var value                   :Any                    = "",
+    var type                    :String                 = "string"
+)
 
 // For UI
 interface Item{
@@ -73,7 +77,7 @@ class QRViewAdapter(private val context: Activity, private val items: MutableLis
     }
 
     override fun getView(position: Int, view: View?, parent:ViewGroup): View{
-        val inflater = context.layoutInflater
+        val inflater                                = context.layoutInflater
         var rowView             :View
 
         when (items[position].itemType){
@@ -90,7 +94,7 @@ class QRViewAdapter(private val context: Activity, private val items: MutableLis
                 }
             }
             cellType.LEFTDETAIL ->{
-                val item    :LeftDetailItem         = items[position] as LeftDetailItem
+                val item        :LeftDetailItem     = items[position] as LeftDetailItem
                 rowView                             = inflater.inflate(R.layout.lv_left_detail, null, true)
                 rowView.findViewById<TextView>(R.id.lvLeftDetailTxtDetail).apply {
                     text                            = item.detail

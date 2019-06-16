@@ -27,10 +27,10 @@
                 android:layout_height="wrap_content" android:id="@+id/txtQRData" android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" android:layout_marginBottom="10dp" android:autoLink="all"
                 android:clickable="false" android:enabled="true" android:focusable="auto"/>
-        <Button
-                android:text="Button"
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/btnPerformAction" android:enabled="false"
-                android:visibility="gone"/>
+                android:layout_height="match_parent" android:id="@+id/layAdditionalButton">
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
