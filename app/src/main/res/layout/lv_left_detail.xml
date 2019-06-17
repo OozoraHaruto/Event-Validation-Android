@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
 
     <TextView
             android:text="Detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" android:id="@+id/lvLeftDetailTxtDetail" android:layout_weight="1"
-            android:paddingLeft="30dp" android:paddingTop="10dp" android:paddingRight="10dp"
-            android:paddingBottom="10dp" android:editable="false" android:gravity="end"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/lvLeftDetailTxtDetail"
+            android:paddingLeft="30dp" android:paddingTop="10dp" android:paddingRight="5dp"
+            android:paddingBottom="10dp" android:editable="false" android:gravity="end" android:textStyle="bold"
+            android:maxWidth="150dp" android:minWidth="150dp"/>
     <TextView
             android:text="Title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" android:id="@+id/lvLeftDetailTxtTitle" android:layout_weight="1"
-            android:padding="10dp"/>
+            android:autoLink="none" android:paddingLeft="5dp" android:paddingTop="10dp" android:paddingRight="10dp"
+            android:paddingBottom="10dp"/>
 </LinearLayout>

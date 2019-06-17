@@ -1,10 +1,13 @@
 package com.example.event_validator_android
 
 import android.app.Activity
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import java.io.Serializable
 import java.math.BigInteger
 
@@ -62,50 +65,57 @@ data class LeftDetailItem(override var title: String, var detail: String): Item{
         get()                                           = cellType.LEFTDETAIL
 }
 
-class QRViewAdapter(private val context: Activity, private val items: MutableList<Item>): BaseAdapter() {
+class QRDataAdapter(private val items:MutableList<Item>, private val onClick: View.OnClickListener = View.OnClickListener {}): RecyclerView.Adapter<QRDataAdapter.QRDataViewHolder>(){
 
-    override fun getCount(): Int {
-        return items.size
+    class QRDataViewHolder(val rowView: View): RecyclerView.ViewHolder(rowView)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QRDataViewHolder {
+        var rowView             :View                   = View(parent.context)
+
+        when (viewType){
+            0 -> rowView                                = LayoutInflater.from(parent.context).inflate(R.layout.lv_section, parent, false) as View
+            1 -> rowView                                = LayoutInflater.from(parent.context).inflate(R.layout.lv_basic, parent, false) as View
+            2 -> rowView                                = LayoutInflater.from(parent.context).inflate(R.layout.lv_left_detail, parent, false) as View
+        }
+
+        return QRDataViewHolder(rowView)
     }
 
-    override fun getItem(position: Int): Item? {
-        return items.get(position)
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, view: View?, parent:ViewGroup): View{
-        val inflater                                = context.layoutInflater
-        var rowView             :View
+    override fun onBindViewHolder(holder: QRDataViewHolder, position: Int) {
+        val rowView                                     = holder.rowView
 
         when (items[position].itemType){
             cellType.SECTION ->{
-                rowView                             = inflater.inflate(R.layout.lv_section, null, true)
                 rowView.findViewById<TextView>(R.id.lvSectionTxtSectionTitle).apply {
-                    text                            = items[position].title
+                    text                                = items[position].title
                 }
             }
             cellType.BASIC ->{
-                rowView                             = inflater.inflate(R.layout.lv_basic, null, true)
                 rowView.findViewById<TextView>(R.id.lvBasicTxtItemTitle).apply {
-                    text                            = items[position].title
+                    text                                = items[position].title
                 }
             }
             cellType.LEFTDETAIL ->{
-                val item        :LeftDetailItem     = items[position] as LeftDetailItem
-                rowView                             = inflater.inflate(R.layout.lv_left_detail, null, true)
+                val item        :LeftDetailItem         = items[position] as LeftDetailItem
                 rowView.findViewById<TextView>(R.id.lvLeftDetailTxtDetail).apply {
-                    text                            = item.detail
+                    text                                = item.detail
                 }
                 rowView.findViewById<TextView>(R.id.lvLeftDetailTxtTitle).apply {
-                    text                            = item.title
+                    text                                = item.title
                 }
             }
         }
-
-
-        return rowView
+        rowView.setOnClickListener(onClick)
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position].itemType){
+            cellType.SECTION                           -> 0
+            cellType.BASIC                             -> 1
+            cellType.LEFTDETAIL                        -> 2
+        }
+    }
+
+    override fun getItemCount() = items.size
+
 }

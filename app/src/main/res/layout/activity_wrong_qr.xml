@@ -20,17 +20,30 @@
                 android:text="Snide Comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/txtSnideComment" android:layout_gravity="center"
-                android:gravity="center" android:layout_marginBottom="10dp"/>
-        <TextView
-                android:text="QR Data"
+                android:gravity="center" android:layout_marginBottom="10dp" android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/txtQRData" android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" android:layout_marginBottom="10dp" android:autoLink="all"
-                android:clickable="false" android:enabled="true" android:focusable="auto"/>
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:id="@+id/layAdditionalButton">
-        </LinearLayout>
+                android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/lstWrongQRData"/>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/layAdditionalButton">
+                </LinearLayout>
+                <TextView
+                        android:text="QR Data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/txtQRData"
+                        android:layout_marginBottom="10dp" android:autoLink="all"
+                        android:clickable="false" android:enabled="true" android:focusable="auto"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp" android:visibility="gone"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

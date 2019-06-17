@@ -4,13 +4,21 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CorrectQR : AppCompatActivity() {
+    var listData                                :MutableList<Item>          = listOf<Item>().toMutableList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_correct_qr)
@@ -21,7 +29,7 @@ class CorrectQR : AppCompatActivity() {
         val shortSDF                                                        = SimpleDateFormat(SDF_INITIAL_FORMAT);
         var fullSDF                             :SimpleDateFormat
         var eventToday                                                      = false
-        var listData                            :MutableList<Item>          = listOf<Item>().toMutableList()
+
 
         supportActionBar.apply {
             title                                                           = resources.getText(R.string.event_details)
@@ -70,18 +78,35 @@ class CorrectQR : AppCompatActivity() {
             }
         }
 
-        val listAdapter                                                     = QRViewAdapter(this, listData)
-        findViewById<ListView>(R.id.lstEventDetails).apply {
-            adapter                                                         = listAdapter
-            isLongClickable                                                 = true
-            setOnItemClickListener { _, _, position, _ ->
-                val clickedItem                 :Item                       = listData[position]
+
+        findViewById<RecyclerView>(R.id.lstEventDetails).apply {
+            layoutManager                                                   = LinearLayoutManager(context)
+            adapter                                                         = QRDataAdapter(listData, onClickList())
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager(context).orientation))
+        }
+    }
+
+    private fun onClickList(): View.OnClickListener{
+        return View.OnClickListener {
+            var data                                                        = ""
+
+            try{
+                data = it.findViewById<TextView>(R.id.lvBasicTxtItemTitle).text.toString()
+            }catch (e: Exception) {
+                Log.e(LOG_KEY, "Clicked Item not Basic Item")
+            }
+            try{
+                data = it.findViewById<TextView>(R.id.lvLeftDetailTxtTitle).text.toString()
+            }catch (e: Exception) {
+                Log.e(LOG_KEY, "Clicked Item not Left Detail Item")
+            }
+            if(data != ""){
                 val websiteRegex                                            = RGX_WEBSITE.toRegex(RegexOption.IGNORE_CASE)
 
-                websiteRegex.matches(clickedItem.title).also { matches ->
+                websiteRegex.matches(data).also { matches ->
                     if (matches){
                         Intent(android.content.Intent.ACTION_VIEW).apply {
-                            data                                            = Uri.parse(clickedItem.title)
+                            this.data                                       = Uri.parse(data)
                         }.also {
                             startActivity(it)
                         }

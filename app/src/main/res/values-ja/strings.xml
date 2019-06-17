@@ -22,6 +22,7 @@
     <string name="to">まで</string>
 
     <!--他のQRコード-->
+    <string name="qr_data">QRデータ</string>
     <string name="opening">このアプリは通常のQRコードをスキャンするためのものではありません。</string>
     <string name="supported">リンクをクリックするだけです。さよなら〜</string>
     <string name="not_suported">申し訳ありませんが、テキストボックスはこのデータに大いに役立つことができません</string>
@@ -34,7 +35,7 @@
     <string name="snide_comment_phone">これは誰の数ですか？ あなたは好きな女の子？</string>
     <string name="snide_comment_sms">あなたは誰にメッセージを送りますか？ 面白い&#8230;</string>
     <string name="snide_comment_email">メール？ 代わりに手紙を書きたいですか？</string>
-    <string name="snide_comment_wifi">Wi-Fi？ 本当に？ iPhoneはこの機能をサポートしていません</string>
+    <string name="snide_comment_wifi">クール！ 無線LANもQRを使用してください！ 独創的</string>
     <string name="snide_comment_bitcoin">うあああ！ あなたは金持ちでなければなりません！</string>
     <string name="snide_comment_geo">どこに行くのですか。僕も行きたい。</string>
     <string name="snide_comment_text">あなたがQRコードに埋め込む必要があるほど秘密なのは何ですか？</string>
@@ -49,6 +50,26 @@
     <string name="act_event">カレンダーに追加</string>
     <string name="act_google_search">グーグルで検索</string>
     <string name="act_google_map_search">グーグルマップで検索</string>
+
+    <string name="detail_longitude">経度</string>
+    <string name="detail_latitude">緯度</string>
+    <string name="detail_phone_number">電話番号</string>
+    <string name="detail_message">メッセージ</string>
+    <string name="detail_email_address">電子メールアドレス</string>
+    <string name="detail_subject">メールの件名</string>
+    <string name="detail_event_title">イベントタイトル</string>
+    <string name="detail_location">場所</string>
+    <string name="detail_name">名前</string>
+    <string name="detail_company">会社名</string>
+    <string name="detail_address">住所</string>
+    <string name="detail_ssid">SSID</string>
+    <string name="detail_password">パスワード</string>
+    <string name="detail_encryption">セキュリティ</string>
+    <string name="detail_wifi_open">なし</string>
+    <string name="detail_wifi_wep">WEP</string>
+    <string name="detail_wifi_wpa">WPA</string>
+
+
 
     <string name="phone_fax">ファックス</string>
     <string name="phone_home">家</string>
